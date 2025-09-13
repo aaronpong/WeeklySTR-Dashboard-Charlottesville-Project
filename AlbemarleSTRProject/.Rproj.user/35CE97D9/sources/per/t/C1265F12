@@ -1,0 +1,27 @@
+{
+    "id": "C1265F12",
+    "path": "~/Downloads/AlbemarleSTRProject/app/diagnose_columns.R",
+    "project_path": "app/diagnose_columns.R",
+    "type": "r_source",
+    "hash": "1351356029",
+    "contents": "",
+    "dirty": false,
+    "created": 1755634888112.0,
+    "source_on_save": false,
+    "relative_order": 9,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "294,48",
+        "scrollLine": "274"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1755635168,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1755635168503,
+    "read_only": false,
+    "read_only_alternatives": []
+}

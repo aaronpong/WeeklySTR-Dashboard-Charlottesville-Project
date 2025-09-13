@@ -1,0 +1,26 @@
+{
+    "id": "07A0005C",
+    "path": "~/Downloads/AlbemarleSTRProject/app/data_manip.R",
+    "project_path": "app/data_manip.R",
+    "type": "r_source",
+    "hash": "1361055895",
+    "contents": "",
+    "dirty": false,
+    "created": 1755616123018.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "500,109",
+        "scrollLine": "487"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1755636624,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1755636624631,
+    "read_only": false,
+    "read_only_alternatives": []
+}

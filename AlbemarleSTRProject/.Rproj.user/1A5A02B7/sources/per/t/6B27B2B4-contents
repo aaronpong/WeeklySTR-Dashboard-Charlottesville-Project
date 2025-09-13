@@ -1,0 +1,157 @@
+# global.R - Enhanced version with better debugging
+
+# List of required packages
+required_packages <- c(
+  "shiny",
+  "shinydashboard", 
+  "DT",
+  "plotly",
+  "dplyr",
+  "readxl",
+  "lubridate",
+  "ggplot2",
+  "tidyverse"
+)
+
+# Function to check and install packages
+install_if_missing <- function(packages) {
+  # Get list of installed packages
+  installed_packages <- rownames(installed.packages())
+  
+  # Find missing packages
+  missing_packages <- packages[!packages %in% installed_packages]
+  
+  if (length(missing_packages) > 0) {
+    cat("Installing missing packages:", paste(missing_packages, collapse = ", "), "\n")
+    cat("This may take a few minutes...\n")
+    
+    # Install missing packages
+    install.packages(missing_packages, dependencies = TRUE)
+    
+    cat("Package installation complete!\n")
+  } else {
+    cat("All required packages are already installed.\n")
+  }
+}
+
+# Check and install missing packages
+install_if_missing(required_packages)
+
+# Load all required packages
+cat("Loading required packages...\n")
+for (package in required_packages) {
+  library(package, character.only = TRUE)
+  cat("✓", package, "loaded\n")
+}
+
+cat("All packages loaded successfully!\n")
+
+# Source the data manipulation script
+cat("Sourcing data manipulation script...\n")
+source("data_manip.R")
+
+# Load and process the data automatically with enhanced debugging
+cat("=== STARTING DATA LOADING IN GLOBAL.R ===\n")
+hotel_data <- refresh_data_if_needed()
+
+if(!is.null(hotel_data) && nrow(hotel_data) > 0) {
+  
+  cat("=== DATA LOADING SUCCESSFUL ===\n")
+  cat("Total records loaded:", nrow(hotel_data), "\n")
+  cat("Date range:", as.character(min(hotel_data$Date)), "to", as.character(max(hotel_data$Date)), "\n")
+  
+  # Show yearly breakdown
+  yearly_breakdown <- hotel_data %>%
+    group_by(Year = year(Date)) %>%
+    summarise(Records = n(), .groups = "drop") %>%
+    arrange(Year)
+  
+  cat("Records by year:\n")
+  for(i in 1:nrow(yearly_breakdown)) {
+    cat(" ", yearly_breakdown$Year[i], ":", yearly_breakdown$Records[i], "records\n")
+  }
+  
+  # Show recent data
+  recent_data <- hotel_data %>%
+    filter(Date >= as.Date("2025-01-01")) %>%
+    group_by(Month = floor_date(Date, "month")) %>%
+    summarise(Records = n(), .groups = "drop") %>%
+    arrange(Month)
+  
+  if(nrow(recent_data) > 0) {
+    cat("2025 monthly breakdown:\n")
+    for(i in 1:nrow(recent_data)) {
+      cat(" ", format(recent_data$Month[i], "%Y-%m"), ":", recent_data$Records[i], "records\n")
+    }
+  }
+  
+  # Create summary data for quick access
+  day_summary <- hotel_data %>%
+    group_by(DayOfWeek, DayAbbrev) %>%
+    summarise(
+      Count = n(),
+      Avg_Occupancy = round(mean(Occupancy, na.rm = TRUE), 1),
+      Avg_ADR = round(mean(ADR, na.rm = TRUE), 2),
+      Avg_RevPAR = round(mean(RevPAR, na.rm = TRUE), 2),
+      .groups = "drop"
+    ) %>%
+    arrange(Avg_RevPAR)
+  
+  # Seasonal summary
+  season_summary <- hotel_data %>%
+    group_by(Season, DayType) %>%
+    summarise(
+      Count = n(),
+      Avg_Occupancy = round(mean(Occupancy, na.rm = TRUE), 1),
+      Avg_ADR = round(mean(ADR, na.rm = TRUE), 2),
+      Avg_RevPAR = round(mean(RevPAR, na.rm = TRUE), 2),
+      .groups = "drop"
+    )
+  
+  # Monthly performance
+  monthly_summary <- hotel_data %>%
+    group_by(Month, Season) %>%
+    summarise(
+      Count = n(),
+      Avg_Occupancy = round(mean(Occupancy, na.rm = TRUE), 1),
+      Avg_ADR = round(mean(ADR, na.rm = TRUE), 2),
+      Avg_RevPAR = round(mean(RevPAR, na.rm = TRUE), 2),
+      .groups = "drop"
+    ) %>%
+    arrange(Season, Avg_RevPAR)
+  
+  # Holiday summary for quick access
+  holiday_summary <- hotel_data %>%
+    filter(Holiday != "Regular Day") %>%
+    group_by(Holiday) %>%
+    summarise(
+      Count = n(),
+      Avg_Occupancy = round(mean(Occupancy, na.rm = TRUE), 1),
+      Avg_ADR = round(mean(ADR, na.rm = TRUE), 2),
+      Avg_RevPAR = round(mean(RevPAR, na.rm = TRUE), 2),
+      .groups = "drop"
+    ) %>%
+    arrange(Avg_RevPAR)
+  
+  cat("Summary tables created successfully!\n")
+  cat("=== GLOBAL.R INITIALIZATION COMPLETE ===\n")
+  
+} else {
+  cat("=== DATA LOADING FAILED ===\n")
+  cat("No data could be loaded. Please check:\n")
+  cat("1. Your ../data directory exists\n")
+  cat("2. It contains Excel files with 'Week Ending' in the filename\n")
+  cat("3. The files contain Charlottesville data\n")
+  cat("4. The file format matches expected column structure\n")
+  
+  # Set hotel_data to empty tibble to prevent errors
+  hotel_data <- tibble(
+    Date = as.Date(character()),
+    DayOfWeek = character(),
+    Occupancy = numeric(),
+    ADR = numeric(),
+    RevPAR = numeric()
+  )
+  
+  cat("Created empty dataset to prevent app crashes\n")
+}

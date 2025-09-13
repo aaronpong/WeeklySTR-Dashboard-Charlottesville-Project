@@ -1,0 +1,27 @@
+{
+    "id": "68A11E81",
+    "path": "~/Downloads/AlbemarleSTRProject/app/test_data_quality.R",
+    "project_path": "app/test_data_quality.R",
+    "type": "r_source",
+    "hash": "2491861715",
+    "contents": "",
+    "dirty": false,
+    "created": 1755633889573.0,
+    "source_on_save": false,
+    "relative_order": 8,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "261,1",
+        "scrollLine": "239"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1755634098,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1755634098707,
+    "read_only": false,
+    "read_only_alternatives": []
+}
