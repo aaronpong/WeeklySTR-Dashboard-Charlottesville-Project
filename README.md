@@ -58,35 +58,28 @@ This dashboard processes multi-year weekly hotel performance reports and provide
 - Weekdays (Monday-Friday) show consistent performance in the $63-84 range
 - Weekend premiums are most pronounced during certain seasons
 
-## Installation and Setup
+## How to Run
 
-```r
-# Install required packages
-install.packages(c("shiny", "shinydashboard", "DT", "plotly", 
-                   "tidyverse", "lubridate", "readxl"))
-
-# Load the application
-library(shiny)
-runApp("path/to/dashboard")
-```
-
-## Usage
-
-1. **Data Upload**: Place your STR performance Excel files in the designated data directory
-2. **Dashboard Launch**: Run the Shiny application through RStudio or command line
-3. **Interactive Analysis**: Use the sidebar filters to explore different time periods, metrics, and comparisons
-4. **Export Results**: Generate reports and export visualizations for presentations
+1. Clone this repository
+2. Open `AlbemarleSTRProject.Rproj` in RStudio
+3. Install required packages:
+   ```r
+   install.packages(c("shiny", "shinydashboard", "DT", "plotly", 
+                      "tidyverse", "lubridate", "readxl"))
+   ```
+4. Run `START_HERE.R` to launch the dashboard
 
 ## Project Structure
 
 ```
-weeklystr-charlottesville-dashboard/
-├── app.R                 # Main Shiny application
-├── data/                 # Data directory for Excel files
-├── scripts/              # Data processing scripts
-├── www/                  # Static assets (CSS, images)
-├── functions/            # Custom R functions
-└── README.md            # This file
+WeeklySTR-Dashboard-Charlottesville-Project/
+├── app/                     # Shiny application files
+├── data/Weekly STR/         # STR performance data
+├── finaldata/               # Processed data files
+├── ScreenShots so Far/      # Dashboard screenshots
+├── AlbemarleSTRProject.Rproj # RStudio project file
+├── START_HERE.R             # Launch script
+└── README.md               # This file
 ```
 
 ## Data Requirements
@@ -98,6 +91,10 @@ The dashboard expects weekly STR performance data with the following key metrics
 - Revenue per Available Room (RevPAR)
 - Hotel/property identifiers
 - Seasonal categorization
+
+## Screenshots
+
+See the `ScreenShots so Far/` folder for dashboard previews and visualizations.
 
 ## Future Enhancements
 
@@ -118,4 +115,4 @@ Aaron Pongsugree
 
 ## Acknowledgments
 
-Developed during a Marketing Data Science internship with Albemarle County, Charlottesville, VA (June 2025 - August 2025). Special thanks to the tourism and marketing teams for their domain expertise and data access.
+Special thanks to Albemarle County for providing the internship opportunity and access to STR performance data for this analysis.
