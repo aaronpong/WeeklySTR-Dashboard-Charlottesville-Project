@@ -6,6 +6,36 @@ An interactive R Shiny dashboard for comprehensive analysis of short-term rental
 
 This dashboard processes multi-year weekly hotel performance reports and provides interactive visualizations for revenue optimization, seasonal analysis, and market trend identification. The system handles varying Excel formats through dynamic column detection algorithms and ensures data accuracy across historical datasets.
 
+## Data Privacy & Confidentiality
+
+### ⚠️ Important Note About Data
+The actual STR performance data used in this analysis contains **proprietary business information** from Albemarle County's tourism market and is **not included** in this public repository for confidentiality reasons.
+
+### 🔍 What You Can See
+This repository demonstrates:
+- ✅ **Advanced R programming** and data processing skills
+- ✅ **Interactive dashboard development** with Shiny
+- ✅ **Statistical analysis methods** and visualization techniques  
+- ✅ **Real-world business insights** and recommendations
+- ✅ **Professional project documentation** and code organization
+- ✅ **Proper data privacy practices** with .gitignore implementation
+
+**The code, methodology, and technical implementation are fully visible while protecting sensitive business data.**
+
+### 📊 Data Structure
+The dashboard analyzes STR data with this structure:
+```r
+# Weekly STR Performance Data Structure
+str_data <- tibble(
+  date = as.Date("2023-01-01"),     # Weekly reporting date
+  occupancy_pct = 75.5,             # Occupancy percentage  
+  adr = 120.00,                     # Average Daily Rate ($)
+  revpar = 90.60,                   # Revenue per Available Room ($)
+  season = "Winter",                # Seasonal classification
+  day_of_week = "Sunday"            # Day of week
+)
+```
+
 ## Key Features
 
 ### Data Processing
@@ -60,41 +90,53 @@ This dashboard processes multi-year weekly hotel performance reports and provide
 
 ## How to Run
 
+### With Your Own Data:
 1. Clone this repository
-2. Open `AlbemarleSTRProject.Rproj` in RStudio
-3. Install required packages:
+2. Place your STR Excel files in `data/Weekly STR/` directory
+3. Ensure your data matches the expected structure shown above
+4. Open `AlbemarleSTRProject.Rproj` in RStudio
+5. Install required packages:
    ```r
    install.packages(c("shiny", "shinydashboard", "DT", "plotly", 
                       "tidyverse", "lubridate", "readxl"))
    ```
-4. Run `START_HERE.R` to launch the dashboard
+6. Run `START_HERE.R` to launch the dashboard
+
+### Code Review:
+- All R scripts and dashboard code are available for examination
+- Documentation and comments explain the data processing methodology
+- Visualization code demonstrates advanced ggplot2 and plotly techniques
 
 ## Project Structure
 
 ```
 WeeklySTR-Dashboard-Charlottesville-Project/
-├── app/                     # Shiny application files
-├── data/Weekly STR/         # STR performance data
-├── finaldata/               # Processed data files
-├── ScreenShots so Far/      # Dashboard screenshots
-├── AlbemarleSTRProject.Rproj # RStudio project file
-├── START_HERE.R             # Launch script
-└── README.md               # This file
+├── app/                          # Shiny application files
+├── .gitignore                    # Privacy protection for sensitive files
+├── ScreenShots so Far/           # Dashboard screenshots and visualizations
+├── AlbemarleSTRProject.Rproj     # RStudio project file
+├── START_HERE.R                  # Launch script
+├── test_debug.R                  # Development and testing scripts
+├── INSTRUCTIONS_R Setup and Dashboard Guide.pdf  # Setup documentation
+└── README.md                     # This file
+
+# Protected/Private (not in repository):
+# ├── data/Weekly STR/            # Actual STR performance data
+# ├── finaldata/                  # Processed data files
 ```
-
-## Data Requirements
-
-The dashboard expects weekly STR performance data with the following key metrics:
-- Date/Week information
-- Occupancy percentages
-- Average Daily Rate (ADR)
-- Revenue per Available Room (RevPAR)
-- Hotel/property identifiers
-- Seasonal categorization
 
 ## Screenshots
 
-See the `ScreenShots so Far/` folder for dashboard previews and visualizations.
+See the `ScreenShots so Far/` folder for dashboard previews and visualizations showing the types of analysis and insights generated.
+
+## Technical Achievements
+
+This project demonstrates proficiency in:
+- **Data Engineering**: Automated processing of inconsistent Excel formats
+- **Statistical Analysis**: Time series analysis, seasonal decomposition, performance metrics
+- **Interactive Visualization**: Responsive Shiny dashboards with complex filtering
+- **Business Intelligence**: Translation of technical analysis into actionable business insights
+- **Professional Development**: Proper version control, documentation, and data privacy practices
 
 ## Future Enhancements
 
@@ -104,10 +146,6 @@ See the `ScreenShots so Far/` folder for dashboard previews and visualizations.
 - Mobile-responsive design improvements
 - Advanced statistical analysis modules
 
-## Contributing
-
-This project was developed as part of an internship program. For questions or suggestions regarding the methodology or implementation, please reach out through the contact information below.
-
 ## Contact
 
 Aaron Pongsugree  
@@ -115,4 +153,4 @@ Aaron Pongsugree
 
 ## Acknowledgments
 
-Special thanks to Albemarle County for providing the internship opportunity and access to STR performance data for this analysis.
+Special thanks to Albemarle County for providing the internship opportunity and access to STR performance data for this analysis. This project demonstrates professional data handling practices while showcasing technical capabilities in data science and dashboard development.
