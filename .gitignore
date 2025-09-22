@@ -1,0 +1,20 @@
+# Sensitive Data - Keep Private
+data/Weekly STR/
+finaldata/
+*.csv
+*.xlsx
+*.xls
+
+# R specific files
+.RData
+.Rhistory
+.Rproj.user/
+
+# System files  
+.DS_Store
+*~
+
+# Temporary files
+*.tmp
+*.log
+
